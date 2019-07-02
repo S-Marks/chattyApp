@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { props } from 'bluebird';
 
-class ChatBar extends Component {
+export default class ChatBar extends Component {
     render() {
         return (
             <footer className="chatbar">
@@ -10,5 +11,3 @@ class ChatBar extends Component {
         );
     }
 }
-
-export default ChatBar;
