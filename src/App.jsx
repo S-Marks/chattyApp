@@ -22,15 +22,14 @@ export default class App extends Component {
       console.log('connected');
     }
     ws.onmessage = e => {
-      const message = JSON.parse(e.data)
+      const message = JSON.parse(e.data);
+      const messages = this.state.messages.concat(message)
+      this.setState({ messages: messages });
     }
   }
 
   sendMessage(newMessage){
     ws.send(JSON.stringify(newMessage))
-    // const messages = this.state.messages.concat(newMessage)
-    // this.setState({ messages: messages })
-    // console.log(newMessage)
   }
 
   componentDidMount() {
