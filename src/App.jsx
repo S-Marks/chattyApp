@@ -3,35 +3,38 @@ import NavBar from './NavBar.jsx';
 import MessageList from './MessageList.jsx';
 import ChatBar from './ChatBar.jsx';
 
+let ws;
+
 export default class App extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       currentUser: { name: "Bob" },
-      messages: [
-        {
-          id: 1,
-          username: "Bob",
-          content: "Has anyone seen my marbles?",
-        },
-        {
-          id: 2,
-          username: "Anonymous",
-          content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-        }
-      ]
+      messages: []
     };
     this.sendMessage = this.sendMessage.bind(this);
   }
 
+  openServer() {
+    ws = new WebSocket('ws://localhost:3001');
+    ws.onopen = () => {
+      console.log('connected');
+    }
+    ws.onmessage = e => {
+      const message = JSON.parse(e.data)
+    }
+  }
+
   sendMessage(newMessage){
-    const messages = this.state.messages.concat(newMessage)
-    this.setState({ messages: messages })
-    console.log(newMessage)
+    ws.send(JSON.stringify(newMessage))
+    // const messages = this.state.messages.concat(newMessage)
+    // this.setState({ messages: messages })
+    // console.log(newMessage)
   }
 
   componentDidMount() {
+    this.openServer();
     console.log("componentDidMount <App />");
     setTimeout(() => {
       console.log("Simulating incoming message");
