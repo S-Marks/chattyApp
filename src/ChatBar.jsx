@@ -10,6 +10,7 @@ export default class ChatBar extends Component {
         this.displayUser = this.displayUser.bind(this);
         this.checkKeyPress = this.checkKeyPress.bind(this);
         this.createMessage = this.createMessage.bind(this);
+        this.changeUsername = this.changeUsername.bind(this);
     }
 
     displayUser(event) {
@@ -19,6 +20,12 @@ export default class ChatBar extends Component {
     createMessage(event) {
         this.setState({
             message: event.target.value
+        })
+    }
+
+    changeUsername(event) {
+        this.setState({
+            userName: event.target.value
         })
     }
 
@@ -39,8 +46,8 @@ export default class ChatBar extends Component {
     render() {
         return (
             <footer className="chatbar">
-                <input className="chatbar-username" defaultValue={this.state.userName} placeholder="Your Name (Optional)" />
-                <input className="chatbar-message" placeholder="Type a message and hit ENTER" value={this.state.message} onChange={this.createMessage} onKeyPress={this.checkKeyPress}  />
+                <input className="chatbar-username" defaultValue={this.state.userName} placeholder="Your Name (Optional)" onChange={this.changeUsername} />
+                <input className="chatbar-message" placeholder="Type a message and hit ENTER" value={this.state.message} onChange={this.createMessage} onKeyPress={this.checkKeyPress} />
             </footer>
         );
     }
