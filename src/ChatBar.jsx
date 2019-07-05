@@ -5,6 +5,7 @@ export default class ChatBar extends Component {
         super(props);
         this.state = {
             userName: props.currentUser,
+            newUser: props.currentUser,
             message: '',
             notification: ''
         };
@@ -26,15 +27,28 @@ export default class ChatBar extends Component {
 
     changeUsername(event) {
         this.setState({
-            userName: event.target.value
+            newUser: event.target.value
         })
     }
 
     postMessage(event) {
         if (event.key === 'Enter') {
+            let userName = this.state.userName;
+            if (this.state.newUser !== this.state.userName) {
+                const notification = {
+                    "id": this.state.id,
+                    "username": this.state.userName,
+                    "type": "notification",
+                    "newUser": this.state.newUser
+                };
+                this.props.sendNotification(notification);
+                userName = this.state.newUser;
+                this.setState({userName: this.state.newUser})
+            }
+
             const newMessage = {
                 "id": this.state.id,
-                "username": this.state.userName,
+                "username": userName,
                 "content": this.state.message,
                 "type": "message"
             };
@@ -45,21 +59,10 @@ export default class ChatBar extends Component {
         }
     }
 
-    postNotification = (event) => {
-        if (event.key === 'Enter') {
-            const notification = {
-                "id": this.state.id,
-                "username": this.state.userName,
-                "type": "notification"
-            };
-            this.props.sendNotification(notification);
-        }
-    }
-
     render() {
         return (
             <footer className="chatbar">
-                <input className="chatbar-username" defaultValue={this.state.userName} placeholder="Your Name (Optional)" onChange={this.changeUsername} onKeyPress={this.postNotification} />
+                <input className="chatbar-username" defaultValue={this.state.userName} placeholder="Your Name (Optional)" onChange={this.changeUsername} />
                 <input className="chatbar-message" placeholder="Type a message and hit ENTER" value={this.state.message} onChange={this.createMessage} onKeyPress={this.postMessage} />
             </footer>
         );

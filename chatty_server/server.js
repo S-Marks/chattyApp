@@ -15,6 +15,15 @@ const wss = new SocketServer({
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
+  let msg = {
+    "content": wss.clients.size,
+    "type": "clients"
+  }
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSockets.OPEN) {
+      client.send(JSON.stringify(msg))
+    }
+  })
 
   ws.on('message', (message) => {
     const msg = JSON.parse(message);

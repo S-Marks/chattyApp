@@ -8,9 +8,9 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      currentUser: { name: '' },
+      currentUser: "Anon",
       messages: [],
-      users: []
+      clients: 0
     };
     this.sendMessage = this.sendMessage.bind(this);
     this.sendNotification = this.sendNotification.bind(this);
@@ -43,6 +43,9 @@ export default class App extends Component {
           const notification = this.state.messages.concat(message)
           this.setState({ messages: notification });
           break;
+
+        case "clients":
+          this.setState({ clients: message.content })
       }
     }
   }
@@ -50,9 +53,9 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBar clients={this.state.clients}/>
         <MessageList messages={this.state.messages} />
-          <ChatBar currentUser={this.state.currentUser.name} sendMessage={this.sendMessage} sendNotification={this.sendNotification}/>
+        <ChatBar currentUser={this.state.currentUser} sendMessage={this.sendMessage} sendNotification={this.sendNotification} />
       </div>
     );
   }
