@@ -1,16 +1,20 @@
 import React from 'react';
 
-function Message({ name, content }) {
-    return (
-        <div>
-            <div className="message">
+function Message({type, name, content }) {
+    if (type === 'message') {
+        return (
+            <div className="message" >
                 <span className="message-username">{name}</span>
                 <span className="message-content">{content}</span>
             </div>
-            <div className="message system">
+        )
+    } else if (type === 'notification') {
+        return (
+            <div className="notification">
+                <span className="notification-content">{} changed their name to {name}</span>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 

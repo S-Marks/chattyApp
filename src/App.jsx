@@ -9,13 +9,19 @@ export default class App extends Component {
 
     this.state = {
       currentUser: { name: '' },
-      messages: []
+      messages: [],
+      users: []
     };
     this.sendMessage = this.sendMessage.bind(this);
+    this.sendNotification = this.sendNotification.bind(this);
   }
 
-sendMessage(newMessage) {
+  sendMessage(newMessage) {
     this.ws.send(JSON.stringify(newMessage))
+  }
+
+  sendNotification(notification) {
+    this.ws.send(JSON.stringify(notification))
   }
 
   componentDidMount() {
@@ -26,9 +32,18 @@ sendMessage(newMessage) {
     }
     this.ws.onmessage = e => {
       const message = JSON.parse(e.data);
-      const messages = this.state.messages.concat(message)
-      this.setState({ messages: messages });
       console.log(message)
+      switch (message.type) {
+        case "message":
+          const messages = this.state.messages.concat(message)
+          this.setState({ messages: messages });
+          break;
+
+        case "notification":
+          const notification = this.state.messages.concat(message)
+          this.setState({ messages: notification });
+          break;
+      }
     }
   }
 
@@ -36,8 +51,8 @@ sendMessage(newMessage) {
     return (
       <div>
         <NavBar />
-        <MessageList messages={this.state.messages} />,
-        <ChatBar currentUser={this.state.currentUser.name} sendMessage={this.sendMessage} />
+        <MessageList messages={this.state.messages} />
+          <ChatBar currentUser={this.state.currentUser.name} sendMessage={this.sendMessage} sendNotification={this.sendNotification}/>
       </div>
     );
   }
