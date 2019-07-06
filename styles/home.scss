@@ -1,68 +1,91 @@
 body {
-  background: white;
+  background: whitesmoke;
   color: black;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 14px;
-  margin: 70px 0;
+  margin: 100px 0;
+  height: 100%
 }
 
 .navbar {
-  background-image: linear-gradient(to bottom right, #438eff, white);
-  border-bottom: 1px solid white;
-  height: 7vh;
-  left: 0;
-  padding: 0 10px;
-  position: fixed;
-  right: 0;
   top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background-image: linear-gradient(to bottom right, #3266d4, #17123e);
 
   .navbar-brand {
     color: #eee;
     display: block;
-    float: left;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 40px;
     height: 60px;
     line-height: 60px;
     padding: 0 10px;
     text-decoration: none;
     font-family: 'Satisfy', cursive;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .navbar-brand:hover {
+    color: white;
+    text-shadow:0px 0px 5px white;
+    transition: all 0.3s ease-in;
   }
 
   .userNum {
     font-size: large;
-    color: #518bcc;
+    color: white;
   }
 }
 
-.message {
-  display: flex;
-  padding: 5px;
+.messages {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15vw;
 
-  .message.system {
-    font-style: italic;
-    padding: 5px 20px;
-  }
 
-  .message-content,
-  .message-username {
-    overflow: hidden;
-    margin: 5px;
-    padding: 0 10px;
-  }
+  .message {
+    padding: 10px;
+    margin: 10px;
 
-  .message-content {
-    flex: 8;
-  }
+    .message.system {
+      font-style: italic;
+      padding: 5px 20px;
+    }
 
-  .message-username {
-    flex: 2;
-    font-weight: 700;
+    .message-content,
+    .message-username {
+      overflow: hidden;
+      margin: 5px;
+      padding: 0 10px;
+    }
+
+    .message-content {
+      flex: 8;
+      display: inline-block;
+      max-width: 60vw;
+      border: 10px solid blanchedalmond;
+      border-radius: 0px 20px;
+      background-color: blanchedalmond;
+    }
+
+    .message-username {
+      flex: 2;
+      display: inline-block;
+      font-weight: 700;
+    }
   }
 }
 
 .chatbar {
-  background: #91beff;
+  background-image: linear-gradient(#3266d4, #17123e);
   border-top: 1px solid white;
   bottom: 0;
   display: flex;

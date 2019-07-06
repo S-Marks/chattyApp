@@ -16,6 +16,7 @@ const wss = new SocketServer({
 wss.on('connection', (ws) => {
   console.log('Client connected');
   let msg = {
+    //displays users logged in
     "content": wss.clients.size,
     "type": "clients"
   }
@@ -27,7 +28,7 @@ wss.on('connection', (ws) => {
 
   ws.on('message', (message) => {
     const msg = JSON.parse(message);
-    console.log("Message", msg)
+     //Sets id for each message
     msg.id = uuidv4();
     wss.clients.forEach((client) => {
       if (client.readyState === WebSockets.OPEN) {
