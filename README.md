@@ -7,7 +7,7 @@ This repository is the starter code for the project: Students will fork and clon
 
 ## Screenshots
 
-!["Screenshot of chatty messages"]()
+!["Screenshot of chatty messages"](https://github.com/S-Marks/chattyApp/blob/master/pictures/chatty-app.png)
 
 ### Getting Started
 
