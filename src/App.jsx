@@ -8,7 +8,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      currentUser: "Anon",
+      currentUser: 'Anon',
       messages: [],
       clients: 0
     };
@@ -53,7 +53,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <NavBar clients={this.state.clients}/>
+        <NavBar clients={this.state.clients} />
         <MessageList messages={this.state.messages} />
         <ChatBar currentUser={this.state.currentUser} sendMessage={this.sendMessage} sendNotification={this.sendNotification} />
       </div>

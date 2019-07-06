@@ -1,10 +1,10 @@
 body {
-  background: whitesmoke;
+  height: 100%;
   color: black;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 14px;
   margin: 100px 0;
-  height: 100%
+  font-size: 14px;
+  background: whitesmoke;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .navbar {
@@ -12,21 +12,21 @@ body {
   left: 0;
   right: 0;
   height: 100px;
-  padding: 0 10px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   position: fixed;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: space-between;
   background-image: linear-gradient(to bottom right, #3266d4, #17123e);
 
   .navbar-brand {
+    height: 60px;
     color: #eee;
     display: block;
-    font-weight: 700;
-    font-size: 40px;
-    height: 60px;
-    line-height: 60px;
     padding: 0 10px;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
     text-decoration: none;
     font-family: 'Satisfy', cursive;
     transition: all 0.3s ease-in-out;
@@ -34,75 +34,87 @@ body {
 
   .navbar-brand:hover {
     color: white;
-    text-shadow:0px 0px 5px white;
     transition: all 0.3s ease-in;
+    text-shadow: 0px 0px 5px white;
   }
 
   .userNum {
-    font-size: large;
     color: white;
+    font-size: large;
   }
 }
 
 .messages {
+  padding: 10px 5vw;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 10px 15vw;
 
 
   .message {
-    padding: 10px;
     margin: 10px;
+    padding: 10px;
 
     .message.system {
-      font-style: italic;
       padding: 5px 20px;
+      font-style: italic;
     }
 
     .message-content,
     .message-username {
-      overflow: hidden;
       margin: 5px;
       padding: 0 10px;
     }
 
     .message-content {
       flex: 8;
-      display: inline-block;
       max-width: 60vw;
-      border: 10px solid blanchedalmond;
+      display: inline-block;
+      word-break: break-word;
       border-radius: 0px 20px;
-      background-color: blanchedalmond;
+      background-color: #ffd381;
+      border: 10px solid transparent;
     }
 
     .message-username {
       flex: 2;
-      display: inline-block;
       font-weight: 700;
+      display: inline-block;
     }
+  }
+
+  .notification {
+    height: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgrey;
   }
 }
 
 .chatbar {
-  background-image: linear-gradient(#3266d4, #17123e);
-  border-top: 1px solid white;
-  bottom: 0;
-  display: flex;
   left: 0;
-  padding: 5px;
-  position: fixed;
   right: 0;
+  bottom: 0;
+  padding: 5px;
+  display: flex;
+  position: fixed;
+  border-top: 1px solid white;
+  background-image: linear-gradient(#3266d4, #17123e);
 
   .chatbar-message,
   .chatbar-username {
-    border: 1px solid white;
-    border-radius: 100px;
-    display: block;
-    height: 40px;
-    line-height: 40px;
     margin: 5px;
+    height: 40px;
     padding: 0 9px;
+    color: white;
+    display: block;
+    line-height: 40px;
+    font-size: larger;
+    font-weight: bold;
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom-color: blanchedalmond;
   }
 
   .chatbar-username {

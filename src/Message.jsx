@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Message({type, name, newUser, content }) {
+function Message({ type, name, newUser, content }) {
     if (type === 'message') {
         return (
             <div className="message" >

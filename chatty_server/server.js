@@ -28,7 +28,7 @@ wss.on('connection', (ws) => {
 
   ws.on('message', (message) => {
     const msg = JSON.parse(message);
-     //Sets id for each message
+    //Sets id for each message
     msg.id = uuidv4();
     wss.clients.forEach((client) => {
       if (client.readyState === WebSockets.OPEN) {

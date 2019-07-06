@@ -43,7 +43,7 @@ export default class ChatBar extends Component {
                 };
                 this.props.sendNotification(notification);
                 userName = this.state.newUser;
-                this.setState({userName: this.state.newUser})
+                this.setState({ userName: this.state.newUser })
             }
 
             const newMessage = {
